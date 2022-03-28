@@ -5,10 +5,15 @@ import org.openqa.selenium.By;
 
 public class HomePage extends PageBase{
     //Mapping
-    By userLogadoInfo = By.xpath("//td[@class='login-info-left']/span[@class='small']");
+    By usuarioLogadoInfo = By.xpath("//td[@class='login-info-left']/span[@class='small']");
+    By botaoReportarIssue = By.xpath("//a[text()='Report Issue']");
 
     //Actions
     public String obterUsuarioLogado(){
-        return getText(userLogadoInfo);
+        return getText(usuarioLogadoInfo);
+    }
+
+    public void clicarReportIssue(){
+        click(botaoReportarIssue);
     }
 }

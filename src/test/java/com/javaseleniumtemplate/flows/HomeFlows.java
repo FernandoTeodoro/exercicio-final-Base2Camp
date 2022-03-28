@@ -10,5 +10,4 @@ public class HomeFlows {
         homePage = new HomePage();
     }
 
-    //Flows
 }

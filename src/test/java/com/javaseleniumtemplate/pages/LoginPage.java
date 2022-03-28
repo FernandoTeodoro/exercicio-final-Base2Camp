@@ -5,20 +5,20 @@ import org.openqa.selenium.By;
 
 public class LoginPage extends PageBase {
     //Mapping
-    By usernameField = By.xpath("//input[@name='username']");
-    By passwordField = By.xpath("//input[@name='password']");
-    By loginButton = By.xpath("//input[@type='submit']");
+    By campoUsuario = By.xpath("//input[@name='username']");
+    By campoSenha = By.xpath("//input[@name='password']");
+    By botaoLogin = By.xpath("//input[@type='submit']");
 
     //Actions
     public void preenhcerUsuario(String usuario){
-        sendKeys(usernameField, usuario);
+        sendKeys(campoUsuario, usuario);
     }
 
     public void preencherSenha(String senha){
-        sendKeys(passwordField, senha);
+        sendKeys(campoSenha, senha);
     }
 
     public void clicarEmLogin(){
-        click(loginButton);
+        click(botaoLogin);
     }
 }
