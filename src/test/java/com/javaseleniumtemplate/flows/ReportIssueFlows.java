@@ -20,9 +20,9 @@ public class ReportIssueFlows {
         reportIssuePage.selecionarSeveridade(severidade);
         reportIssuePage.selecionarPrioridade(prioridade);
         reportIssuePage.selecionarPlataforma(plataforma);
-        reportIssuePage.preencherResumo(resumo);
-        reportIssuePage.preencherDescricao(descricao);
-        reportIssuePage.preencherPassosParaReproducao(passosParaRproducao);
+        reportIssuePage.preencherCampoResumo(resumo);
+        reportIssuePage.preencherCampoDescricao(descricao);
+        reportIssuePage.preencherCampoPassosParaReproducao(passosParaRproducao);
         reportIssuePage.clicarEmRegistrarIssue();
     }
 

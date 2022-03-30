@@ -5,52 +5,52 @@ import org.openqa.selenium.By;
 
 public class ReportIssuePage extends PageBase {
     //Mapping
-    By campoSelecionarCategoria = By.xpath("//select[@name='category_id']");
-    By campoSelecionarReprodutibilidade = By.xpath("//select[@name='reproducibility']");
-    By campoSelecionarSeveridade = By.xpath("//select[@name='severity']");
-    By campoSelecionarPrioridade = By.xpath("//select[@name='priority']");
-    By campoSelecionarPlataforma = By.xpath("//select[@name='profile_id']");
-    By campoResumo = By.xpath("//input[@name='summary']");
-    By campoDescricao = By.xpath("//textarea[@name='description']");
-    By campoPassosParaReproducao = By.xpath("//textarea[@name='steps_to_reproduce']");
-    By botaoSubmeterIssue = By.xpath("//input[@value='Submit Report']");
+    By selecionarCategoriaField = By.xpath("//select[@name='category_id']");
+    By selecionarReprodutibilidadeField = By.xpath("//select[@name='reproducibility']");
+    By selecionarSeveridadeField = By.xpath("//select[@name='severity']");
+    By selecionarPrioridadeField = By.xpath("//select[@name='priority']");
+    By selecionarPlataformaField = By.xpath("//select[@name='profile_id']");
+    By resumoField = By.xpath("//input[@name='summary']");
+    By descricaoField = By.xpath("//textarea[@name='description']");
+    By passosParaReproducaoField = By.xpath("//textarea[@name='steps_to_reproduce']");
+    By submeterIssueButton = By.xpath("//input[@value='Submit Report']");
     By mensagemDeSucesso = By.xpath("//div[contains(text(),'Operation successful.')]");
 
     //Actions
     public void selecionarCategoria(String categoria){
-        comboBoxSelectByVisibleText(campoSelecionarCategoria, categoria);
+        comboBoxSelectByVisibleText(selecionarCategoriaField, categoria);
     }
 
     public void selecionarReprodutibilidade(String reprodutibilidade){
-        comboBoxSelectByVisibleText(campoSelecionarReprodutibilidade, reprodutibilidade);
+        comboBoxSelectByVisibleText(selecionarReprodutibilidadeField, reprodutibilidade);
     }
 
     public void selecionarSeveridade(String severidade){
-        comboBoxSelectByVisibleText(campoSelecionarSeveridade, severidade);
+        comboBoxSelectByVisibleText(selecionarSeveridadeField, severidade);
     }
 
     public void selecionarPrioridade(String prioridade){
-        comboBoxSelectByVisibleText(campoSelecionarPrioridade, prioridade);
+        comboBoxSelectByVisibleText(selecionarPrioridadeField, prioridade);
     }
 
     public void selecionarPlataforma(String plataforma){
-        comboBoxSelectByVisibleText(campoSelecionarPlataforma, plataforma);
+        comboBoxSelectByVisibleText(selecionarPlataformaField, plataforma);
     }
 
-    public void preencherResumo(String resumo){
-        sendKeys(campoResumo, resumo);
+    public void preencherCampoResumo(String resumo){
+        sendKeys(resumoField, resumo);
     }
 
-    public void preencherDescricao(String descricao){
-        sendKeys(campoDescricao, descricao);
+    public void preencherCampoDescricao(String descricao){
+        sendKeys(descricaoField, descricao);
     }
 
-    public void preencherPassosParaReproducao(String passosParaReproducao){
-        sendKeys(campoPassosParaReproducao, passosParaReproducao);
+    public void preencherCampoPassosParaReproducao(String passosParaReproducao){
+        sendKeys(passosParaReproducaoField, passosParaReproducao);
     }
 
     public void clicarEmRegistrarIssue(){
-        click(botaoSubmeterIssue);
+        click(submeterIssueButton);
     }
 
     public String retornoMensagemDeSucesso(){

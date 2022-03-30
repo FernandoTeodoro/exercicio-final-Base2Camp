@@ -12,9 +12,13 @@ public class ReportedIssueFlows {
     }
 
     //Flows
-    public void adicionarRsponsavelPelaIssue( String nomeResponsavel){
-
+    public void adicionarResponsavelPelaIssue(String nomeResponsavel){
         reportedIssuesPage.selecionarResponsavel(nomeResponsavel);
         reportedIssuesPage.clicarEmAdicionarResponsavel();
+    }
+
+    public void alterarStatusDaIssue(String novoStatus){
+        reportedIssuesPage.selecionarNovoStatus(novoStatus);
+        reportedIssuesPage.clicarEmAltrarStatus();
     }
 }

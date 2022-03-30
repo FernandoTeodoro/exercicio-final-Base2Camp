@@ -4,47 +4,52 @@ import com.javaseleniumtemplate.bases.TestBase;
 import com.javaseleniumtemplate.pages.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
-
-
-import static com.javaseleniumtemplate.utils.Utils.getFileContent;
 
 
 public class IssuesTests extends TestBase {
 
+    //Metodo responsavel por fazer o login antes da execução de cada teste
+    @Before
+    public void efetuarLogin(){
+
+        LoginPage loginPage = new LoginPage();
+        Dotenv dotenv = Dotenv.load();
+
+        String usuario = dotenv.get("USER_LOGIN");
+        String senha = dotenv.get("USER_PASSWORD");
+
+        loginPage.preenhcerUsuario(usuario);
+        loginPage.preencherSenha(senha);
+        loginPage.clicarEmLogin();
+    }
+
     //Objects
-    LoginPage loginPage;
     HomePage homePage;
     SelectProjectPage selectProjectPage;
     ReportIssuePage reportIssuePage;
     ReportedIssuesPage reportedIssuesPage;
-
-    @BeforeClass
-    public static void efetuarLogin(){}
+    ChangeStatusPage changeStatusPage;
 
     //Tests
     @Test
     public void reportarUmaNovaIssue(){
-
         //Objects instances
-        loginPage = new LoginPage();
         homePage = new HomePage();
         selectProjectPage = new SelectProjectPage();
         reportIssuePage = new ReportIssuePage();
-        Dotenv dotenv = Dotenv.load();
-//        String dadosIssue = getFileContent("src/test/resources/files/dadosParaCadastroIssue");
 
         /*
         MASSA DE DADOS:
         Para a realização desse teste é necessario que exista um projeto ja cadastrado no sistema.
-        Como no momento da criação desse script já existia um projeto cadastrado na plataforma eu
+
+        OBS.: Como no momento da criação desse script já existia um projeto cadastrado na plataforma eu
         tomei a liberdade de usá-lo no meu teste.
         */
 
-        //Parameteres
-        String usuario = dotenv.get("USER_LOGIN");
-        String senha = dotenv.get("USER_PASSWORD");
+        //Parameters
+        String URL_CADASTRARISSUE = "https://mantis-prova.base2.com.br/bug_report_page.php";
 
         //Dados necessarios para o cadastro de uma nova issue
         String nomeProjeto = "ProjectTatiane";
@@ -68,11 +73,7 @@ public class IssuesTests extends TestBase {
                                      "5 - Se tudo der certo, vai dar errado aqui!";
 
         //Test
-        loginPage.preenhcerUsuario(usuario);
-        loginPage.preencherSenha(senha);
-        loginPage.clicarEmLogin();
-
-        homePage.clicarReportIssue();
+        homePage.navigateTo(URL_CADASTRARISSUE);
 
         selectProjectPage.selecionarProjeto(nomeProjeto);
         selectProjectPage.clicarEmSelcionarProjeto();
@@ -82,43 +83,81 @@ public class IssuesTests extends TestBase {
         reportIssuePage.selecionarSeveridade(severidade);
         reportIssuePage.selecionarPrioridade(prioridade);
         reportIssuePage.selecionarPlataforma(plataforma);
-        reportIssuePage.preencherResumo(resumo);
-        reportIssuePage.preencherDescricao(descricao);
-        reportIssuePage.preencherPassosParaReproducao(passosParaRproducao);
+        reportIssuePage.preencherCampoResumo(resumo);
+        reportIssuePage.preencherCampoDescricao(descricao);
+        reportIssuePage.preencherCampoPassosParaReproducao(passosParaRproducao);
         reportIssuePage.clicarEmRegistrarIssue();
 
         Assert.assertTrue(reportIssuePage.retornoMensagemDeSucesso().contains("Operation successful."));
     }
 
     @Test
-    public void atriburIssueAUmaPessoa(){
+    public void atriburIssueAUmResponsavel(){
         //Objects instances
-        loginPage = new LoginPage();
         homePage = new HomePage();
         reportedIssuesPage = new ReportedIssuesPage();
-        Dotenv dotenv = Dotenv.load();
 
-        //Parameteres
-        String usuario = dotenv.get("USER_LOGIN");
-        String senha = dotenv.get("USER_PASSWORD");
+        /*
+        MASSA DE DADOS:
+        Para a realização desse teste é necessario que exista uma issue ja cadastrada no sistema
+        e sem um responsável associado a ela. Alem disso tambem precisa existir um usuario que
+        possa ser colocado como responsável por essa issue.
+
+        OBS.: Como no momento da criação desse script já existiam algumas issues assim na plataforma por conta
+        de alguns testes anteriores eu resolvi usá-las no meu teste.
+        */
+
+        //Parameters
         String URL_ISSUE = "https://mantis-prova.base2.com.br/view.php?id=";
-        String idIssue = "9138";
-        String responsavelPelaIssue = "Treinamento07";
+        String idIssue = "9073";
+        String novoResponsavelPelaIssue = "Treinamento07";
 
         //Test
-        loginPage.preenhcerUsuario(usuario);
-        loginPage.preencherSenha(senha);
-        loginPage.clicarEmLogin();
-
         homePage.navigateTo(URL_ISSUE + idIssue);
 
-        reportedIssuesPage.selecionarResponsavel(responsavelPelaIssue);
+        reportedIssuesPage.selecionarResponsavel(novoResponsavelPelaIssue);
         reportedIssuesPage.clicarEmAdicionarResponsavel();
 
-        Assert.assertEquals(reportedIssuesPage.retornarResponsavelAtual(), responsavelPelaIssue);
+        Assert.assertEquals(reportedIssuesPage.retornarResponsavelAtual(), novoResponsavelPelaIssue);
     }
 
     @Test
-    public void alterarStatusDeUmaIssue(){}
+    public void alterarStatusDaIssueParaClosed(){
+        //Objects instances
+        homePage = new HomePage();
+        reportedIssuesPage = new ReportedIssuesPage();
+        changeStatusPage = new ChangeStatusPage();
 
+        /*
+        MASSA DE DADOS:
+        Para a realização desse teste é necessario que exista uma issue ja cadastrada no sistema.
+
+        OBS.: Como no momento da criação desse script já existiam algumas issues assim na plataforma por conta
+        de alguns testes anteriores eu resolvi usá-las no meu teste.
+
+        OBS2.: Nesse teste, ao escolher o status "Closed" o usuário é redirecionado pra outra página, aonde existem
+        novos campos para serem preenchidos. Eu então decidir tratar tudo como um fluxo unico.
+        */
+
+        //Parameters
+        String URL_ISSUE = "https://mantis-prova.base2.com.br/view.php?id=";
+        String idIssue = "9073";
+        String novoStatus = "closed";
+        String situacaoIssue = "not fixable";
+        String anotacao = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ex lectus, consequat at " +
+                          "efficitur in, dignissim a nisl.";
+
+        //Test
+
+        homePage.navigateTo(URL_ISSUE + idIssue);
+
+        reportedIssuesPage.selecionarNovoStatus(novoStatus);
+        reportedIssuesPage.clicarEmAltrarStatus();
+
+        changeStatusPage.selecionarSituacaoDaIssue(situacaoIssue);
+        changeStatusPage.preencherCampoAnotacao(anotacao);
+        changeStatusPage.clicarEmFecharIssue();
+
+        Assert.assertEquals(reportedIssuesPage.retornaStatusAtual(), novoStatus);
+    }
 }
