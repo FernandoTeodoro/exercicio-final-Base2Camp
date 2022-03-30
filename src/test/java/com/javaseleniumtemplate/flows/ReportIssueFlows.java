@@ -1,6 +1,5 @@
 package com.javaseleniumtemplate.flows;
 
-import com.javaseleniumtemplate.pages.LoginPage;
 import com.javaseleniumtemplate.pages.ReportIssuePage;
 
 public class ReportIssueFlows {

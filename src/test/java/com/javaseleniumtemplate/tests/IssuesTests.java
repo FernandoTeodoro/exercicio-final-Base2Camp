@@ -1,21 +1,27 @@
 package com.javaseleniumtemplate.tests;
 
 import com.javaseleniumtemplate.bases.TestBase;
-import com.javaseleniumtemplate.pages.HomePage;
-import com.javaseleniumtemplate.pages.LoginPage;
-import com.javaseleniumtemplate.pages.ReportIssuePage;
-import com.javaseleniumtemplate.pages.SelectProjectPage;
+import com.javaseleniumtemplate.pages.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 
+import static com.javaseleniumtemplate.utils.Utils.getFileContent;
+
+
 public class IssuesTests extends TestBase {
+
     //Objects
     LoginPage loginPage;
     HomePage homePage;
     SelectProjectPage selectProjectPage;
     ReportIssuePage reportIssuePage;
+    ReportedIssuesPage reportedIssuesPage;
+
+    @BeforeClass
+    public static void efetuarLogin(){}
 
     //Tests
     @Test
@@ -27,6 +33,14 @@ public class IssuesTests extends TestBase {
         selectProjectPage = new SelectProjectPage();
         reportIssuePage = new ReportIssuePage();
         Dotenv dotenv = Dotenv.load();
+//        String dadosIssue = getFileContent("src/test/resources/files/dadosParaCadastroIssue");
+
+        /*
+        MASSA DE DADOS:
+        Para a realização desse teste é necessario que exista um projeto ja cadastrado no sistema.
+        Como no momento da criação desse script já existia um projeto cadastrado na plataforma eu
+        tomei a liberdade de usá-lo no meu teste.
+        */
 
         //Parameteres
         String usuario = dotenv.get("USER_LOGIN");
@@ -75,4 +89,36 @@ public class IssuesTests extends TestBase {
 
         Assert.assertTrue(reportIssuePage.retornoMensagemDeSucesso().contains("Operation successful."));
     }
+
+    @Test
+    public void atriburIssueAUmaPessoa(){
+        //Objects instances
+        loginPage = new LoginPage();
+        homePage = new HomePage();
+        reportedIssuesPage = new ReportedIssuesPage();
+        Dotenv dotenv = Dotenv.load();
+
+        //Parameteres
+        String usuario = dotenv.get("USER_LOGIN");
+        String senha = dotenv.get("USER_PASSWORD");
+        String URL_ISSUE = "https://mantis-prova.base2.com.br/view.php?id=";
+        String idIssue = "9138";
+        String responsavelPelaIssue = "Treinamento07";
+
+        //Test
+        loginPage.preenhcerUsuario(usuario);
+        loginPage.preencherSenha(senha);
+        loginPage.clicarEmLogin();
+
+        homePage.navigateTo(URL_ISSUE + idIssue);
+
+        reportedIssuesPage.selecionarResponsavel(responsavelPelaIssue);
+        reportedIssuesPage.clicarEmAdicionarResponsavel();
+
+        Assert.assertEquals(reportedIssuesPage.retornarResponsavelAtual(), responsavelPelaIssue);
+    }
+
+    @Test
+    public void alterarStatusDeUmaIssue(){}
+
 }

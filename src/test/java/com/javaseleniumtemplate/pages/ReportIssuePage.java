@@ -5,11 +5,11 @@ import org.openqa.selenium.By;
 
 public class ReportIssuePage extends PageBase {
     //Mapping
-    By campoCategoria = By.xpath("//select[@name='category_id']");
-    By campoReprodutibilidade = By.xpath("//select[@name='reproducibility']");
-    By campoSeveridade = By.xpath("//select[@name='severity']");
-    By campoPrioridade = By.xpath("//select[@name='priority']");
-    By campoPlataforma = By.xpath("//select[@name='profile_id']");
+    By campoSelecionarCategoria = By.xpath("//select[@name='category_id']");
+    By campoSelecionarReprodutibilidade = By.xpath("//select[@name='reproducibility']");
+    By campoSelecionarSeveridade = By.xpath("//select[@name='severity']");
+    By campoSelecionarPrioridade = By.xpath("//select[@name='priority']");
+    By campoSelecionarPlataforma = By.xpath("//select[@name='profile_id']");
     By campoResumo = By.xpath("//input[@name='summary']");
     By campoDescricao = By.xpath("//textarea[@name='description']");
     By campoPassosParaReproducao = By.xpath("//textarea[@name='steps_to_reproduce']");
@@ -18,23 +18,23 @@ public class ReportIssuePage extends PageBase {
 
     //Actions
     public void selecionarCategoria(String categoria){
-        comboBoxSelectByVisibleText(campoCategoria, categoria);
+        comboBoxSelectByVisibleText(campoSelecionarCategoria, categoria);
     }
 
     public void selecionarReprodutibilidade(String reprodutibilidade){
-        comboBoxSelectByVisibleText(campoReprodutibilidade, reprodutibilidade);
+        comboBoxSelectByVisibleText(campoSelecionarReprodutibilidade, reprodutibilidade);
     }
 
     public void selecionarSeveridade(String severidade){
-        comboBoxSelectByVisibleText(campoSeveridade, severidade);
+        comboBoxSelectByVisibleText(campoSelecionarSeveridade, severidade);
     }
 
     public void selecionarPrioridade(String prioridade){
-        comboBoxSelectByVisibleText(campoPrioridade, prioridade);
+        comboBoxSelectByVisibleText(campoSelecionarPrioridade, prioridade);
     }
 
     public void selecionarPlataforma(String plataforma){
-        comboBoxSelectByVisibleText(campoPlataforma, plataforma);
+        comboBoxSelectByVisibleText(campoSelecionarPlataforma, plataforma);
     }
 
     public void preencherResumo(String resumo){
