@@ -13,7 +13,7 @@ Exercício final proposto no Base2Camp para a criação de scripts automatizados
     <li> Validação da função de alterar o status de uma issue para 'Closed' -> <strong>alterarStatusDaIssueParaClosed()</strong></br></li>
     <li> Validação da função de busca de uma issue utilizando seu ID (dividida em 2 métodos):
       <ol>
-        <li><strong>Existente -> efetuarBuscadeIssueExistente()</strong></br></li>
+        <li><strong>Existente -> efetuarBuscaDeIssueExistente()</strong></br></li>
         <li><strong>Inexistente -> efetuarBuscaDeIssueInexistente()</strong></li>
       </ol>
     </li>
