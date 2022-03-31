@@ -10,4 +10,9 @@ public class HomeFlows {
         homePage = new HomePage();
     }
 
+    public void buscarIssueInexiistente(String idIssue){
+        homePage.preencherCampoIdIssue(idIssue);
+        homePage.clicarEmBuscarIssue();
+    }
+
 }

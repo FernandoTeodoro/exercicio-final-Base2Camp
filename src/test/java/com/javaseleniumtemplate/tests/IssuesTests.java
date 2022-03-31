@@ -29,7 +29,7 @@ public class IssuesTests extends TestBase {
     HomePage homePage;
     SelectProjectPage selectProjectPage;
     ReportIssuePage reportIssuePage;
-    ReportedIssuesPage reportedIssuesPage;
+    ReportedIssuePage reportedIssuesPage;
     ChangeStatusPage changeStatusPage;
 
     //Tests
@@ -95,7 +95,7 @@ public class IssuesTests extends TestBase {
     public void atriburIssueAUmResponsavel(){
         //Objects instances
         homePage = new HomePage();
-        reportedIssuesPage = new ReportedIssuesPage();
+        reportedIssuesPage = new ReportedIssuePage();
 
         /*
         MASSA DE DADOS:
@@ -125,7 +125,7 @@ public class IssuesTests extends TestBase {
     public void alterarStatusDaIssueParaClosed(){
         //Objects instances
         homePage = new HomePage();
-        reportedIssuesPage = new ReportedIssuesPage();
+        reportedIssuesPage = new ReportedIssuePage();
         changeStatusPage = new ChangeStatusPage();
 
         /*
@@ -136,7 +136,7 @@ public class IssuesTests extends TestBase {
         de alguns testes anteriores eu resolvi usá-las no meu teste.
 
         OBS2.: Nesse teste, ao escolher o status "Closed" o usuário é redirecionado pra outra página, aonde existem
-        novos campos para serem preenchidos. Eu então decidir tratar tudo como um fluxo unico.
+        novos campos para serem preenchidos. Eu então optei por tratar tudo como um fluxo unico.
         */
 
         //Parameters
@@ -148,7 +148,6 @@ public class IssuesTests extends TestBase {
                           "efficitur in, dignissim a nisl.";
 
         //Test
-
         homePage.navigateTo(URL_ISSUE + idIssue);
 
         reportedIssuesPage.selecionarNovoStatus(novoStatus);
@@ -160,4 +159,54 @@ public class IssuesTests extends TestBase {
 
         Assert.assertEquals(reportedIssuesPage.retornaStatusAtual(), novoStatus);
     }
+
+    @Test
+    public void efetuarBuscaDeIssueInexistente(){
+        //Objects instances
+        homePage = new HomePage();
+        reportedIssuesPage = new ReportedIssuePage();
+
+        /*
+        MASSA DE DADOS:
+        Para a realização desse teste é necessario que exista um projeto ja cadastrado no sistema e o
+        ID de uma issue que não exista no sistema.
+
+        OBS.: Como no momento da criação desse script já existia um projeto cadastrado na plataforma eu
+        tomei a liberdade de usá-lo no meu teste e inventei um Id para poder utilizar no teste.
+        */
+
+        //Parameters
+        String idIssue = "100000";
+        String mensagemIssueNaoEncontrada = "Issue " + idIssue + " not found.";
+
+        homePage.preencherCampoIdIssue(idIssue);
+        homePage.clicarEmBuscarIssue();
+
+        Assert.assertEquals(reportedIssuesPage.retornaMensagemIssueNaoEncontrada(), mensagemIssueNaoEncontrada);
+    }
+
+    @Test
+    public void efetuarBuscadeIssueExistente(){
+        //Objects instances
+        homePage = new HomePage();
+        reportedIssuesPage = new ReportedIssuePage();
+
+        /*
+        MASSA DE DADOS:
+        Para a realização desse teste é necessario que exista uma issue ja cadastrada no sistema.
+
+        OBS.: Como no momento da criação desse script já existiam algumas issues assim na plataforma por conta
+        de alguns testes anteriores eu resolvi usá-las no meu teste.
+        */
+
+        //Parameters
+        String idIssue = "9187";
+
+        homePage.preencherCampoIdIssue(idIssue);
+        homePage.clicarEmBuscarIssue();
+
+        Assert.assertEquals(reportedIssuesPage.retornaIdIssue(), "000"+idIssue);
+    }
+
+
 }

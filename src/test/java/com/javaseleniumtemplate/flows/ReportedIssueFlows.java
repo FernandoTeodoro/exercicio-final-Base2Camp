@@ -1,14 +1,14 @@
 package com.javaseleniumtemplate.flows;
 
-import com.javaseleniumtemplate.pages.ReportedIssuesPage;
+import com.javaseleniumtemplate.pages.ReportedIssuePage;
 
 public class ReportedIssueFlows {
     //Objects and constructor
-    ReportedIssuesPage reportedIssuesPage;
+    ReportedIssuePage reportedIssuesPage;
 
     public ReportedIssueFlows(){
         //Page and Steps Objects
-        reportedIssuesPage = new ReportedIssuesPage();
+        reportedIssuesPage = new ReportedIssuePage();
     }
 
     //Flows
@@ -21,4 +21,5 @@ public class ReportedIssueFlows {
         reportedIssuesPage.selecionarNovoStatus(novoStatus);
         reportedIssuesPage.clicarEmAltrarStatus();
     }
+
 }

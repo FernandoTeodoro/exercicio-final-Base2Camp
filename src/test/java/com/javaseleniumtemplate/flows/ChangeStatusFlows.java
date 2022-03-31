@@ -1,7 +1,6 @@
 package com.javaseleniumtemplate.flows;
 
 import com.javaseleniumtemplate.pages.ChangeStatusPage;
-import com.javaseleniumtemplate.pages.ReportedIssuesPage;
 
 public class ChangeStatusFlows {
     //Objects and constructor
