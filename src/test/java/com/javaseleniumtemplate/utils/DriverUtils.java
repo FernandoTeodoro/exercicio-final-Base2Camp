@@ -42,7 +42,7 @@ public class DriverUtils {
     }
 
     public static void quitInstace(){
-//        INSTANCE.quit();
+        INSTANCE.quit();
         INSTANCE = null;
     }
 }

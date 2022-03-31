@@ -141,7 +141,7 @@ public class IssuesTests extends TestBase {
 
         //Parameters
         String URL_ISSUE = "https://mantis-prova.base2.com.br/view.php?id=";
-        String idIssue = "9073";
+        String idIssue = "9072";
         String novoStatus = "closed";
         String situacaoIssue = "not fixable";
         String anotacao = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ex lectus, consequat at " +
