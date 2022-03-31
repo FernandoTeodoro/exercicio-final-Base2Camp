@@ -20,4 +20,4 @@ Exercício final proposto no Base2Camp para a criação de scripts automatizados
 </ol>
 </blockquote>
                                                                                        
-<p>Os scripts foram todos desenvolvidos usando as tecnologias e melhores praticas aprendidas durante todo o Base2Camp.</p> 
+<p>Os scripts foram todos desenvolvidos usando as tecnologias e melhores praticas aprendidas durante todo o Base2Camp. Alem disso por escolha minha adicionei as bibliotecas <a href="https://mvnrepository.com/artifact/com.github.javafaker/javafaker/1.0.2">Faker</a> para auxiliar no preenchimento de alguns campos e <a href="https://mvnrepository.com/artifact/io.github.cdimascio/dotenv-java">DotEnv</a> que ficou responsável pela ocultação das credenciais de acesso.</p> 
