@@ -1,4 +1,4 @@
-Exercício final proposto no Base2Camp para a criação de scripts automatizados de funções importantes da plataforma Mantis Bug Tracker
+Exercício final proposto no Base2Camp para a criação de scripts automatizados de funções existentes na plataforma Mantis Bug Tracker
 
 
   <p>O exercício consistia na criação de 5 casos de testes automatizados que validassem cenários e repostas referentes a funções presentes na plataforma Mantis Bug     Tracker. Os cenários a serem testados eram de escolha do aluno, que deveria considerar o grau de relevância da funcionalidade do sistema.
