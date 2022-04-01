@@ -10,7 +10,7 @@ Exercício final proposto no Base2Camp para a criação de scripts automatizados
     <ol>
       <li> Validação da função de Login na Plataforma -> <strong>efetuarLoginComSucesso()</strong></br></li>
       <li> Validação da função de registro de uma nova issue -> <strong>reportarUmaNovaIssue()</strong></br></li>
-      <li> Validação da função de atribuir uma issue a um responsável por tentar resolvê-la -> <strong>atriburIssueAUmResponsavel()</strong></br><l/i>
+      <li> Validação da função de atribuir uma issue a um responsável -> <strong>atriburIssueAUmResponsavel()</strong></br><l/i>
       <li> Validação da função de alterar o estado de uma issue para 'Closed' -> <strong>alterarStatusDaIssueParaClosed()</strong></br></li>
       <li> Validação da função de busca de uma issue utilizando seu ID (dividida em 2 métodos):
         <ol>
